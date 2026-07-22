@@ -6,452 +6,865 @@
 
   <title>AG Delivery</title>
 
-  <meta name="description" content="AG Delivery - Il tuo ordine, direttamente dove vuoi.">
+  <meta
+    name="description"
+    content="AG Delivery - Food, Drink e Attrezzatura"
+  >
 
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- HEADER -->
+<!-- =========================
+     HEADER
+========================= -->
 
-  <header class="header">
+<header class="header">
 
-    <div class="logo">
-      🛵 <span>AG</span> Delivery
+  <div class="logo">
+    🛵 <span>AG</span> Delivery
+  </div>
+
+  <nav class="navbar">
+
+    <a href="#home">
+      🏠 Home
+    </a>
+
+    <a href="#food">
+      🍔 Food & Drink
+    </a>
+
+    <a href="#equipment">
+      🧰 Attrezzatura
+    </a>
+
+  </nav>
+
+  <button
+    class="cart-button"
+    onclick="toggleCart()"
+  >
+
+    🛒 Carrello
+
+    <b id="cart-count">
+      0
+    </b>
+
+  </button>
+
+</header>
+
+
+<!-- =========================
+     HOME
+========================= -->
+
+<section
+  class="hero"
+  id="home"
+>
+
+  <div class="hero-content">
+
+    <div class="badge">
+      🛵 DELIVERY RP
     </div>
 
-    <button class="cart-button" onclick="toggleCart()">
-      🛒
-      <span>Carrello</span>
-      <b id="cart-count">0</b>
+    <h1>
+      Il tuo ordine.<br>
+      <span>La tua città.</span>
+    </h1>
+
+    <p>
+      Ordina Food, Drink e Attrezzatura
+      direttamente dal nostro servizio Delivery.
+    </p>
+
+    <button
+      class="hero-button"
+      onclick="scrollToFood()"
+    >
+      Ordina ora 🛵
     </button>
 
-  </header>
+  </div>
 
+</section>
 
-  <!-- HERO -->
 
-  <section class="hero">
+<!-- =========================
+     FOOD & DRINK
+========================= -->
 
-    <div class="hero-content">
+<section
+  class="menu-section"
+  id="food"
+>
 
-      <div class="badge">
-        🛵 DELIVERY RP
-      </div>
+  <div class="section-title">
 
-      <h1>
-        Il tuo ordine.<br>
-        <span>La tua città.</span>
-      </h1>
+    <p>
+      FOOD & DRINK
+    </p>
 
-      <p>
-        Ordina quello che vuoi e ricevi la tua consegna
-        direttamente nel luogo indicato.
-      </p>
-
-      <button class="hero-button" onclick="scrollToMenu()">
-        Ordina ora 🛵
-      </button>
-
-    </div>
-
-  </section>
-
-
-  <!-- MENU -->
-
-  <main>
-
-    <section class="menu-section" id="menu">
-
-      <div class="section-title">
-
-        <p>IL NOSTRO MENU</p>
-
-        <h2>Scegli cosa ordinare</h2>
-
-      </div>
-
-
-      <!-- CATEGORIE -->
-
-      <div class="categories">
-
-        <button class="category active" onclick="filterProducts('all', this)">
-          Tutto
-        </button>
-
-        <button class="category" onclick="filterProducts('hamburger', this)">
-          🍔 Hamburger
-        </button>
-
-        <button class="category" onclick="filterProducts('pizza', this)">
-          🍕 Pizza
-        </button>
-
-        <button class="category" onclick="filterProducts('drink', this)">
-          🥤 Bevande
-        </button>
-
-        <button class="category" onclick="filterProducts('side', this)">
-          🍟 Contorni
-        </button>
-
-      </div>
-
-
-      <!-- PRODOTTI -->
-
-      <div class="products-grid" id="products-grid">
-
-        <!-- HAMBURGER -->
-
-        <article class="product-card" data-category="hamburger">
-
-          <div class="product-image">
-            🍔
-          </div>
-
-          <div class="product-info">
-
-            <h3>AG Burger</h3>
-
-            <p>
-              Hamburger con carne, insalata,
-              pomodoro e salsa speciale.
-            </p>
-
-            <div class="product-bottom">
-
-              <strong>€ 8,00</strong>
-
-              <button onclick="addToCart('AG Burger', 8)">
-                +
-              </button>
-
-            </div>
-
-          </div>
-
-        </article>
-
-
-        <article class="product-card" data-category="hamburger">
-
-          <div class="product-image">
-            🍔
-          </div>
-
-          <div class="product-info">
-
-            <h3>Cheese Burger</h3>
-
-            <p>
-              Hamburger con doppio formaggio
-              e salsa speciale.
-            </p>
-
-            <div class="product-bottom">
-
-              <strong>€ 9,00</strong>
-
-              <button onclick="addToCart('Cheese Burger', 9)">
-                +
-              </button>
-
-            </div>
-
-          </div>
-
-        </article>
-
-
-        <!-- PIZZA -->
-
-        <article class="product-card" data-category="pizza">
-
-          <div class="product-image">
-            🍕
-          </div>
-
-          <div class="product-info">
-
-            <h3>Pizza Margherita</h3>
-
-            <p>
-              Pomodoro, mozzarella e basilico.
-            </p>
-
-            <div class="product-bottom">
-
-              <strong>€ 7,00</strong>
-
-              <button onclick="addToCart('Pizza Margherita', 7)">
-                +
-              </button>
-
-            </div>
-
-          </div>
-
-        </article>
-
-
-        <article class="product-card" data-category="pizza">
-
-          <div class="product-image">
-            🍕
-          </div>
-
-          <div class="product-info">
-
-            <h3>Pizza Diavola</h3>
-
-            <p>
-              Pomodoro, mozzarella e salame piccante.
-            </p>
-
-            <div class="product-bottom">
-
-              <strong>€ 9,00</strong>
-
-              <button onclick="addToCart('Pizza Diavola', 9)">
-                +
-              </button>
-
-            </div>
-
-          </div>
-
-        </article>
-
-
-        <!-- BEVANDE -->
-
-        <article class="product-card" data-category="drink">
-
-          <div class="product-image">
-            🥤
-          </div>
-
-          <div class="product-info">
-
-            <h3>Cola</h3>
-
-            <p>
-              Bevanda fresca.
-            </p>
-
-            <div class="product-bottom">
-
-              <strong>€ 2,00</strong>
-
-              <button onclick="addToCart('Cola', 2)">
-                +
-              </button>
-
-            </div>
-
-          </div>
-
-        </article>
-
-
-        <article class="product-card" data-category="drink">
-
-          <div class="product-image">
-            💧
-          </div>
-
-          <div class="product-info">
-
-            <h3>Acqua</h3>
-
-            <p>
-              Bottiglia d'acqua.
-            </p>
-
-            <div class="product-bottom">
-
-              <strong>€ 1,00</strong>
-
-              <button onclick="addToCart('Acqua', 1)">
-                +
-              </button>
-
-            </div>
-
-          </div>
-
-        </article>
-
-
-        <!-- CONTORNI -->
-
-        <article class="product-card" data-category="side">
-
-          <div class="product-image">
-            🍟
-          </div>
-
-          <div class="product-info">
-
-            <h3>Patatine</h3>
-
-            <p>
-              Patatine croccanti.
-            </p>
-
-            <div class="product-bottom">
-
-              <strong>€ 3,00</strong>
-
-              <button onclick="addToCart('Patatine', 3)">
-                +
-              </button>
-
-            </div>
-
-          </div>
-
-        </article>
-
-
-        <article class="product-card" data-category="side">
-
-          <div class="product-image">
-            🧅
-          </div>
-
-          <div class="product-info">
-
-            <h3>Onion Rings</h3>
-
-            <p>
-              Anelli di cipolla croccanti.
-            </p>
-
-            <div class="product-bottom">
-
-              <strong>€ 4,00</strong>
-
-              <button onclick="addToCart('Onion Rings', 4)">
-                +
-              </button>
-
-            </div>
-
-          </div>
-
-        </article>
-
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <!-- CARRELLO -->
-
-  <div class="cart-overlay" id="cart-overlay" onclick="closeCartOutside(event)">
-
-    <aside class="cart" id="cart">
-
-      <div class="cart-header">
-
-        <h2>🛒 Il tuo ordine</h2>
-
-        <button onclick="toggleCart()">
-          ✕
-        </button>
-
-      </div>
-
-
-      <div id="cart-items" class="cart-items">
-
-        <p class="empty-cart">
-          Il carrello è vuoto.
-        </p>
-
-      </div>
-
-
-      <div class="cart-total">
-
-        <span>Totale</span>
-
-        <strong>
-          € <span id="cart-total">0.00</span>
-        </strong>
-
-      </div>
-
-
-      <!-- FORM ORDINE -->
-
-      <div class="order-form">
-
-        <h3>Dati consegna</h3>
-
-        <input
-          type="text"
-          id="customer-name"
-          placeholder="👤 Nome RP"
-          maxlength="50"
-        >
-
-        <input
-          type="text"
-          id="delivery-location"
-          placeholder="📍 Posizione di consegna"
-          maxlength="100"
-        >
-
-        <textarea
-          id="order-notes"
-          placeholder="📝 Note per il corriere (opzionale)"
-          maxlength="300"
-        ></textarea>
-
-        <button
-          class="order-button"
-          onclick="sendOrder()"
-        >
-          🛵 INVIA ORDINE
-        </button>
-
-        <p id="order-status" class="order-status"></p>
-
-      </div>
-
-    </aside>
+    <h2>
+      Cosa vuoi ordinare?
+    </h2>
 
   </div>
 
 
-  <!-- FOOTER -->
+  <!-- CATEGORIE -->
 
-  <footer>
+  <div class="categories">
 
-    <div class="footer-logo">
-      🛵 AG Delivery
-    </div>
+    <button
+      class="category active"
+      onclick="filterProducts('all', this)"
+    >
+      Tutto
+    </button>
+
+    <button
+      class="category"
+      onclick="filterProducts('hamburger', this)"
+    >
+      🍔 Hamburger
+    </button>
+
+    <button
+      class="category"
+      onclick="filterProducts('pizza', this)"
+    >
+      🍕 Pizza
+    </button>
+
+    <button
+      class="category"
+      onclick="filterProducts('drink', this)"
+    >
+      🥤 Bevande
+    </button>
+
+    <button
+      class="category"
+      onclick="filterProducts('side', this)"
+    >
+      🍟 Contorni
+    </button>
+
+    <button
+      class="category"
+      onclick="filterProducts('snack', this)"
+    >
+      🍪 Snack
+    </button>
+
+  </div>
+
+
+  <div class="products-grid">
+
+
+    <!-- AG BURGER -->
+
+    <article
+      class="product-card"
+      data-category="hamburger"
+    >
+
+      <div class="product-image">
+        🍔
+      </div>
+
+      <div class="product-info">
+
+        <h3>
+          AG Burger
+        </h3>
+
+        <p>
+          Hamburger con carne, insalata,
+          pomodoro e salsa speciale.
+        </p>
+
+        <div class="product-bottom">
+
+          <strong>
+            € 8,00
+          </strong>
+
+          <button
+            onclick="addToCart('AG Burger', 8, 'Food & Drink')"
+          >
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <!-- CHEESE BURGER -->
+
+    <article
+      class="product-card"
+      data-category="hamburger"
+    >
+
+      <div class="product-image">
+        🍔
+      </div>
+
+      <div class="product-info">
+
+        <h3>
+          Cheese Burger
+        </h3>
+
+        <p>
+          Hamburger con doppio formaggio
+          e salsa speciale.
+        </p>
+
+        <div class="product-bottom">
+
+          <strong>
+            € 9,00
+          </strong>
+
+          <button
+            onclick="addToCart('Cheese Burger', 9, 'Food & Drink')"
+          >
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <!-- PIZZA MARGHERITA -->
+
+    <article
+      class="product-card"
+      data-category="pizza"
+    >
+
+      <div class="product-image">
+        🍕
+      </div>
+
+      <div class="product-info">
+
+        <h3>
+          Pizza Margherita
+        </h3>
+
+        <p>
+          Pomodoro, mozzarella e basilico.
+        </p>
+
+        <div class="product-bottom">
+
+          <strong>
+            € 7,00
+          </strong>
+
+          <button
+            onclick="addToCart('Pizza Margherita', 7, 'Food & Drink')"
+          >
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <!-- PIZZA DIAVOLA -->
+
+    <article
+      class="product-card"
+      data-category="pizza"
+    >
+
+      <div class="product-image">
+        🍕
+      </div>
+
+      <div class="product-info">
+
+        <h3>
+          Pizza Diavola
+        </h3>
+
+        <p>
+          Pomodoro, mozzarella e salame piccante.
+        </p>
+
+        <div class="product-bottom">
+
+          <strong>
+            € 9,00
+          </strong>
+
+          <button
+            onclick="addToCart('Pizza Diavola', 9, 'Food & Drink')"
+          >
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <!-- COLA -->
+
+    <article
+      class="product-card"
+      data-category="drink"
+    >
+
+      <div class="product-image">
+        🥤
+      </div>
+
+      <div class="product-info">
+
+        <h3>
+          Cola
+        </h3>
+
+        <p>
+          Bevanda fresca.
+        </p>
+
+        <div class="product-bottom">
+
+          <strong>
+            € 2,00
+          </strong>
+
+          <button
+            onclick="addToCart('Cola', 2, 'Food & Drink')"
+          >
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <!-- ACQUA -->
+
+    <article
+      class="product-card"
+      data-category="drink"
+    >
+
+      <div class="product-image">
+        💧
+      </div>
+
+      <div class="product-info">
+
+        <h3>
+          Acqua
+        </h3>
+
+        <p>
+          Bottiglia d'acqua.
+        </p>
+
+        <div class="product-bottom">
+
+          <strong>
+            € 1,00
+          </strong>
+
+          <button
+            onclick="addToCart('Acqua', 1, 'Food & Drink')"
+          >
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <!-- PATATINE -->
+
+    <article
+      class="product-card"
+      data-category="side"
+    >
+
+      <div class="product-image">
+        🍟
+      </div>
+
+      <div class="product-info">
+
+        <h3>
+          Patatine
+        </h3>
+
+        <p>
+          Patatine croccanti.
+        </p>
+
+        <div class="product-bottom">
+
+          <strong>
+            € 3,00
+          </strong>
+
+          <button
+            onclick="addToCart('Patatine', 3, 'Food & Drink')"
+          >
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <!-- ONION RINGS -->
+
+    <article
+      class="product-card"
+      data-category="side"
+    >
+
+      <div class="product-image">
+        🧅
+      </div>
+
+      <div class="product-info">
+
+        <h3>
+          Onion Rings
+        </h3>
+
+        <p>
+          Anelli di cipolla croccanti.
+        </p>
+
+        <div class="product-bottom">
+
+          <strong>
+            € 4,00
+          </strong>
+
+          <button
+            onclick="addToCart('Onion Rings', 4, 'Food & Drink')"
+          >
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <!-- BISCOTTI -->
+
+    <article
+      class="product-card"
+      data-category="snack"
+    >
+
+      <div class="product-image">
+        🍪
+      </div>
+
+      <div class="product-info">
+
+        <h3>
+          Biscotti
+        </h3>
+
+        <p>
+          Confezione di biscotti.
+        </p>
+
+        <div class="product-bottom">
+
+          <strong>
+            € 3,00
+          </strong>
+
+          <button
+            onclick="addToCart('Biscotti', 3, 'Food & Drink')"
+          >
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <!-- RED BULL -->
+
+    <article
+      class="product-card"
+      data-category="snack"
+    >
+
+      <div class="product-image">
+        ⚡
+      </div>
+
+      <div class="product-info">
+
+        <h3>
+          Red Bull
+        </h3>
+
+        <p>
+          Bevanda energetica.
+        </p>
+
+        <div class="product-bottom">
+
+          <strong>
+            € 3,50
+          </strong>
+
+          <button
+            onclick="addToCart('Red Bull', 3.5, 'Food & Drink')"
+          >
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     ATTREZZATURA
+========================= -->
+
+<section
+  class="menu-section equipment-section"
+  id="equipment"
+>
+
+  <div class="section-title">
 
     <p>
-      Servizio Delivery del server RP
+      ATTREZZATURA
     </p>
 
-    <small>
-      © 2026 AG Delivery
-    </small>
+    <h2>
+      Oggetti disponibili
+    </h2>
 
-  </footer>
+  </div>
 
 
-  <script src="script.js"></script>
+  <div class="products-grid">
+
+
+    <!-- TORCIA -->
+
+    <article class="product-card">
+
+      <div class="product-image">
+        🔦
+      </div>
+
+      <div class="product-info">
+
+        <h3>
+          Torcia
+        </h3>
+
+        <p>
+          Torcia portatile.
+        </p>
+
+        <div class="product-bottom">
+
+          <strong>
+            € 10,00
+          </strong>
+
+          <button
+            onclick="addToCart('Torcia', 10, 'Attrezzatura')"
+          >
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <!-- GPS TRACKER -->
+
+    <article class="product-card">
+
+      <div class="product-image">
+        📍
+      </div>
+
+      <div class="product-info">
+
+        <h3>
+          GPS Tracker
+        </h3>
+
+        <p>
+          Dispositivo GPS Tracker.
+        </p>
+
+        <div class="product-bottom">
+
+          <strong>
+            € 25,00
+          </strong>
+
+          <button
+            onclick="addToCart('GPS Tracker', 25, 'Attrezzatura')"
+          >
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <!-- SCALA -->
+
+    <article class="product-card">
+
+      <div class="product-image">
+        🪜
+      </div>
+
+      <div class="product-info">
+
+        <h3>
+          Scala
+        </h3>
+
+        <p>
+          Scala portatile.
+        </p>
+
+        <div class="product-bottom">
+
+          <strong>
+            € 20,00
+          </strong>
+
+          <button
+            onclick="addToCart('Scala', 20, 'Attrezzatura')"
+          >
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <!-- NASTRO -->
+
+    <article class="product-card">
+
+      <div class="product-image">
+        🩹
+      </div>
+
+      <div class="product-info">
+
+        <h3>
+          Nastro
+        </h3>
+
+        <p>
+          Nastro adesivo.
+        </p>
+
+        <div class="product-bottom">
+
+          <strong>
+            € 5,00
+          </strong>
+
+          <button
+            onclick="addToCart('Nastro', 5, 'Attrezzatura')"
+          >
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     CARRELLO
+========================= -->
+
+<div
+  class="cart-overlay"
+  id="cart-overlay"
+  onclick="closeCartOutside(event)"
+>
+
+  <aside class="cart">
+
+    <div class="cart-header">
+
+      <h2>
+        🛒 Il tuo ordine
+      </h2>
+
+      <button onclick="toggleCart()">
+        ✕
+      </button>
+
+    </div>
+
+
+    <div id="cart-items">
+
+      <p class="empty-cart">
+        Il carrello è vuoto.
+      </p>
+
+    </div>
+
+
+    <div class="cart-total">
+
+      <span>
+        Totale
+      </span>
+
+      <strong>
+        € <span id="cart-total">
+          0.00
+        </span>
+      </strong>
+
+    </div>
+
+
+    <div class="order-form">
+
+      <h3>
+        Dati consegna
+      </h3>
+
+      <input
+        id="customer-name"
+        type="text"
+        placeholder="👤 Nome RP"
+        maxlength="50"
+      >
+
+      <input
+        id="delivery-location"
+        type="text"
+        placeholder="📍 Posizione di consegna"
+        maxlength="100"
+      >
+
+      <textarea
+        id="order-notes"
+        placeholder="📝 Note per il corriere"
+        maxlength="300"
+      ></textarea>
+
+      <button
+        class="order-button"
+        onclick="sendOrder()"
+      >
+        🛵 INVIA ORDINE
+      </button>
+
+      <p id="order-status"></p>
+
+    </div>
+
+  </aside>
+
+</div>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+  <div class="footer-logo">
+    🛵 AG Delivery
+  </div>
+
+  <p>
+    Servizio Delivery del server RP
+  </p>
+
+  <small>
+    © 2026 AG Delivery
+  </small>
+
+</footer>
+
+
+<script src="script.js"></script>
 
 </body>
 </html>
