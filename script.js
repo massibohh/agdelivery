@@ -2,9 +2,6 @@
 // CONFIGURAZIONE
 // ==========================================
 
-// Questo è il tuo Cloudflare Worker.
-// NON inserire qui il Webhook Discord.
-
 const WORKER_URL =
   "https://agdelivery.massibohhdeveloper.workers.dev";
 
@@ -17,14 +14,16 @@ let cart = [];
 
 
 // ==========================================
-// AGGIUNGI PRODOTTO
+// AGGIUNGI AL CARRELLO
 // ==========================================
 
-function addToCart(name, price) {
+function addToCart(name, price, category) {
 
-  const existingProduct = cart.find(
-    product => product.name === name
-  );
+  const existingProduct =
+    cart.find(
+      product => product.name === name
+    );
+
 
   if (existingProduct) {
 
@@ -33,12 +32,19 @@ function addToCart(name, price) {
   } else {
 
     cart.push({
+
       name: name,
+
       price: price,
+
+      category: category,
+
       quantity: 1
+
     });
 
   }
+
 
   updateCart();
 
@@ -48,26 +54,32 @@ function addToCart(name, price) {
 
 
 // ==========================================
-// RIMUOVI PRODOTTO
+// RIMUOVI DAL CARRELLO
 // ==========================================
 
 function removeFromCart(name) {
 
-  const product = cart.find(
-    product => product.name === name
-  );
+  const product =
+    cart.find(
+      product => product.name === name
+    );
+
 
   if (!product) return;
 
+
   product.quantity--;
+
 
   if (product.quantity <= 0) {
 
-    cart = cart.filter(
-      item => item.name !== name
-    );
+    cart =
+      cart.filter(
+        item => item.name !== name
+      );
 
   }
+
 
   updateCart();
 
@@ -81,13 +93,21 @@ function removeFromCart(name) {
 function updateCart() {
 
   const cartItems =
-    document.getElementById("cart-items");
+    document.getElementById(
+      "cart-items"
+    );
+
 
   const cartCount =
-    document.getElementById("cart-count");
+    document.getElementById(
+      "cart-count"
+    );
+
 
   const cartTotal =
-    document.getElementById("cart-total");
+    document.getElementById(
+      "cart-total"
+    );
 
 
   cartItems.innerHTML = "";
@@ -112,26 +132,41 @@ function updateCart() {
   cart.forEach(product => {
 
     const productTotal =
-      product.price * product.quantity;
+      product.price *
+      product.quantity;
 
 
     total += productTotal;
 
-    itemCount += product.quantity;
+    itemCount +=
+      product.quantity;
 
 
-    const item = document.createElement("div");
+    const item =
+      document.createElement(
+        "div"
+      );
 
-    item.className = "cart-item";
+
+    item.className =
+      "cart-item";
 
 
     item.innerHTML = `
 
       <div class="cart-item-top">
 
-        <span class="cart-item-name">
-          ${product.name}
-        </span>
+        <div>
+
+          <div class="cart-item-name">
+            ${product.name}
+          </div>
+
+          <div class="cart-item-category">
+            ${product.category}
+          </div>
+
+        </div>
 
         <span class="cart-item-price">
           € ${productTotal.toFixed(2)}
@@ -153,7 +188,11 @@ function updateCart() {
         </span>
 
         <button
-          onclick="addToCart('${product.name}', ${product.price})"
+          onclick="addToCart(
+            '${product.name}',
+            ${product.price},
+            '${product.category}'
+          )"
         >
           +
         </button>
@@ -185,29 +224,42 @@ function updateCart() {
 function openCart() {
 
   document
-    .getElementById("cart-overlay")
-    .classList.add("open");
+    .getElementById(
+      "cart-overlay"
+    )
+    .classList.add(
+      "open"
+    );
 
 }
 
 
 // ==========================================
-// CHIUDI CARRELLO
+// CHIUDI / APRI CARRELLO
 // ==========================================
 
 function toggleCart() {
 
   document
-    .getElementById("cart-overlay")
-    .classList.toggle("open");
+    .getElementById(
+      "cart-overlay"
+    )
+    .classList.toggle(
+      "open"
+    );
 
 }
 
 
+// ==========================================
+// CHIUDI CLICCANDO FUORI
+// ==========================================
+
 function closeCartOutside(event) {
 
   if (
-    event.target.id === "cart-overlay"
+    event.target.id ===
+    "cart-overlay"
   ) {
 
     toggleCart();
@@ -218,13 +270,15 @@ function closeCartOutside(event) {
 
 
 // ==========================================
-// SCROLL MENU
+// SCROLL FOOD
 // ==========================================
 
-function scrollToMenu() {
+function scrollToFood() {
 
   document
-    .getElementById("menu")
+    .getElementById(
+      "food"
+    )
     .scrollIntoView({
       behavior: "smooth"
     });
@@ -233,91 +287,120 @@ function scrollToMenu() {
 
 
 // ==========================================
-// FILTRO CATEGORIE
+// FILTRO PRODOTTI
 // ==========================================
 
-function filterProducts(category, button) {
+function filterProducts(
+  category,
+  button
+) {
 
   const products =
-    document.querySelectorAll(".product-card");
+    document.querySelectorAll(
+      ".product-card"
+    );
 
 
   const buttons =
-    document.querySelectorAll(".category");
+    document.querySelectorAll(
+      ".category"
+    );
 
 
-  buttons.forEach(btn => {
+  buttons.forEach(
+    btn => {
 
-    btn.classList.remove("active");
-
-  });
-
-
-  button.classList.add("active");
-
-
-  products.forEach(product => {
-
-    const productCategory =
-      product.dataset.category;
-
-
-    if (
-      category === "all" ||
-      productCategory === category
-    ) {
-
-      product.style.display = "block";
-
-    } else {
-
-      product.style.display = "none";
+      btn.classList.remove(
+        "active"
+      );
 
     }
+  );
 
-  });
+
+  button.classList.add(
+    "active"
+  );
+
+
+  products.forEach(
+    product => {
+
+      const productCategory =
+        product.dataset.category;
+
+
+      if (
+        category === "all" ||
+        productCategory === category
+      ) {
+
+        product.style.display =
+          "block";
+
+      } else {
+
+        product.style.display =
+          "none";
+
+      }
+
+    }
+  );
 
 }
 
 
 // ==========================================
-// INVIO ORDINE
+// INVIA ORDINE
 // ==========================================
 
 async function sendOrder() {
 
   const status =
-    document.getElementById("order-status");
+    document.getElementById(
+      "order-status"
+    );
 
 
   const button =
-    document.querySelector(".order-button");
+    document.querySelector(
+      ".order-button"
+    );
 
 
   const customerName =
     document
-      .getElementById("customer-name")
+      .getElementById(
+        "customer-name"
+      )
       .value
       .trim();
 
 
   const deliveryLocation =
     document
-      .getElementById("delivery-location")
+      .getElementById(
+        "delivery-location"
+      )
       .value
       .trim();
 
 
   const notes =
     document
-      .getElementById("order-notes")
+      .getElementById(
+        "order-notes"
+      )
       .value
       .trim();
 
 
   // CONTROLLO CARRELLO
 
-  if (cart.length === 0) {
+  if (
+    cart.length === 0
+  ) {
 
     status.textContent =
       "❌ Il carrello è vuoto.";
@@ -329,7 +412,9 @@ async function sendOrder() {
 
   // CONTROLLO NOME
 
-  if (!customerName) {
+  if (
+    !customerName
+  ) {
 
     status.textContent =
       "❌ Inserisci il tuo nome RP.";
@@ -341,7 +426,9 @@ async function sendOrder() {
 
   // CONTROLLO POSIZIONE
 
-  if (!deliveryLocation) {
+  if (
+    !deliveryLocation
+  ) {
 
     status.textContent =
       "❌ Inserisci la posizione.";
@@ -351,39 +438,56 @@ async function sendOrder() {
   }
 
 
-  // CREA TESTO ORDINE
+  // CREA LISTA ORDINE
 
-  const orderText = cart
-    .map(product => {
+  const orderText =
+    cart
+      .map(
+        product => {
 
-      const total =
-        product.price *
-        product.quantity;
+          const total =
+            product.price *
+            product.quantity;
 
-      return (
-        `${product.quantity}x ${product.name}` +
-        ` — €${total.toFixed(2)}`
-      );
 
-    })
-    .join("\n");
+          return (
+
+            `${product.quantity}x ` +
+            `${product.name}` +
+            ` — €${total.toFixed(2)}`
+
+          );
+
+        }
+      )
+      .join("\n");
 
 
   // CALCOLA TOTALE
 
   const total =
     cart.reduce(
-      (sum, product) =>
-        sum +
-        product.price *
-        product.quantity,
+      (
+        sum,
+        product
+      ) => {
+
+        return (
+          sum +
+          product.price *
+          product.quantity
+        );
+
+      },
       0
     );
 
 
-  // BLOCCA PULSANTE
+  // DISABILITA PULSANTE
 
-  button.disabled = true;
+  button.disabled =
+    true;
+
 
   button.textContent =
     "Invio in corso...";
@@ -399,34 +503,44 @@ async function sendOrder() {
       await fetch(
         WORKER_URL,
         {
-          method: "POST",
+
+          method:
+            "POST",
 
           headers: {
+
             "Content-Type":
               "application/json"
+
           },
 
-          body: JSON.stringify({
+          body:
+            JSON.stringify({
 
-            cliente:
-              customerName,
+              cliente:
+                customerName,
 
-            posizione:
-              deliveryLocation,
+              posizione:
+                deliveryLocation,
 
-            ordine:
-              `${orderText}\n\nTotale: €${total.toFixed(2)}`,
+              ordine:
+                orderText,
 
-            note:
-              notes
+              totale:
+                total.toFixed(2),
 
-          })
+              note:
+                notes
+
+            })
 
         }
       );
 
 
-    if (!response.ok) {
+    if (
+      !response.ok
+    ) {
 
       throw new Error(
         "Errore del server"
@@ -441,31 +555,44 @@ async function sendOrder() {
       "✅ Ordine inviato con successo!";
 
 
-    // RESET
+    // SVUOTA CARRELLO
 
     cart = [];
+
 
     updateCart();
 
 
+    // SVUOTA FORM
+
     document
-      .getElementById("customer-name")
+      .getElementById(
+        "customer-name"
+      )
       .value = "";
 
 
     document
-      .getElementById("delivery-location")
+      .getElementById(
+        "delivery-location"
+      )
       .value = "";
 
 
     document
-      .getElementById("order-notes")
+      .getElementById(
+        "order-notes"
+      )
       .value = "";
 
 
-  } catch (error) {
+  } catch (
+    error
+  ) {
 
-    console.error(error);
+    console.error(
+      error
+    );
 
 
     status.textContent =
@@ -474,7 +601,9 @@ async function sendOrder() {
   }
 
 
-  button.disabled = false;
+  button.disabled =
+    false;
+
 
   button.textContent =
     "🛵 INVIA ORDINE";
@@ -483,7 +612,7 @@ async function sendOrder() {
 
 
 // ==========================================
-// INIZIALIZZAZIONE
+// AVVIO
 // ==========================================
 
 updateCart();
